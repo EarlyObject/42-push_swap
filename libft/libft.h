@@ -6,7 +6,7 @@
 /*   By: asydykna <asydykna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/22 14:02:04 by asydykna          #+#    #+#             */
-/*   Updated: 2021/02/09 13:10:45 by asydykna         ###   ########.fr       */
+/*   Updated: 2021/09/28 15:19:10 by asydykna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,5 +71,6 @@ t_list			*ft_lstmap(t_list *lst, void *(*f)(void *),
 					void (*del)(void *));
 char			*ft_uitoa(unsigned int n);
 char			*ft_itoa_hex(unsigned long long num, char format);
+t_list			*ft_lstpenultimate(t_list *lst);
 
 #endif

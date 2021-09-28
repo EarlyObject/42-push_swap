@@ -6,7 +6,7 @@
 #    By: asydykna <asydykna@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/01/26 13:13:58 by asydykna          #+#    #+#              #
-#   Updated: 2021/09/27 13:56:52 by                  ###   ########.fr       # #
+#    Updated: 2021/09/28 15:21:03 by asydykna         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -58,7 +58,8 @@ SRC = ft_atoi.c	\
 	ft_lstdelone_bonus.c\
 	ft_lstclear_bonus.c\
 	ft_lstiter_bonus.c\
-	ft_lstmap_bonus.c
+	ft_lstmap_bonus.c\
+	ft_lstpenultimate.c
 
 OBJ = $(SRC:.c=.o)
 

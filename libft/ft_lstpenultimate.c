@@ -1,26 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstadd_front_bonus.c                            :+:      :+:    :+:   */
+/*   ft_lst_penultimate.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: asydykna <asydykna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/02/05 08:55:06 by asydykna          #+#    #+#             */
-/*   Updated: 2021/09/28 10:20:12 by asydykna         ###   ########.fr       */
+/*   Created: 2021/09/28 15:14:43 by asydykna          #+#    #+#             */
+/*   Updated: 2021/09/28 15:18:39 by asydykna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void
-	ft_lstadd_front(t_list **alst, t_list *new)
+/*
+** SYNOPSIS: find the one before last element of the list
+**
+** DESCRIPTION:
+** 		Returns the last element of the list.
+*/
+
+t_list
+	*ft_lstpenultimate(t_list *lst)
 {
-	if (!new)
-		return ;
-	if (alst)
+	t_list	*next;
+
+	while (lst)
 	{
-		if (*alst)
-			new->next = *alst;
+		next = lst->next;
+		if (next)
+			if (!next->next)
+				return (lst);
+		lst = next;
 	}
-	*alst = new;
+	return (NULL);
 }

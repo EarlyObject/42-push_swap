@@ -1,26 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstadd_front_bonus.c                            :+:      :+:    :+:   */
+/*   r_functions.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: asydykna <asydykna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/02/05 08:55:06 by asydykna          #+#    #+#             */
-/*   Updated: 2021/09/28 10:20:12 by asydykna         ###   ########.fr       */
+/*   Created: 2021/09/28 11:52:27 by asydykna          #+#    #+#             */
+/*   Updated: 2021/09/28 11:52:32 by asydykna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../include/push_swap.h"
 
 void
-	ft_lstadd_front(t_list **alst, t_list *new)
+	ra(t_list **lst)
 {
-	if (!new)
-		return ;
-	if (alst)
-	{
-		if (*alst)
-			new->next = *alst;
-	}
-	*alst = new;
+	top_to_bottom(lst);
+	printf("ra\n");
+}
+
+void
+	rb(t_list **lst)
+{
+	top_to_bottom(lst);
+	printf("rb\n");
+}
+
+void
+	rr(t_list **a, t_list **b)
+{
+	top_to_bottom(a);
+	top_to_bottom(b);
+	printf("rr\n");
 }
