@@ -18,18 +18,20 @@ void
 	system("leaks push_swap");
 }
 
-int
+void
 	build_lst(char *const *argv, t_list **list)
 {
 	int	i;
+	int	*pnum;
 
-	i = 1;
+	i = 0;
 	while (argv[i])
 	{
-		ft_lstadd_front(list, ft_lstnew(argv[i]));
-		(i)++;
+		pnum = (int *)malloc(sizeof(int));
+		*pnum = ft_atoi_modf(argv[i]);
+		ft_lstadd_back(list, ft_lstnew(pnum));
+		i++;
 	}
-	return (i - 1);
 }
 
 void
@@ -40,36 +42,54 @@ void
 	while (list)
 	{
 		temp = list->next;
+		free(list->content);
 		free(list);
 		list = temp;
 	}
 }
 
+void
+	free_2d_arr(void **arr)
+{
+	int	i;
+
+	i = 0;
+	while (arr[i])
+	{
+		free(arr[i]);
+		i++;
+	}
+	free(arr);
+}
+
 int
 	main(int argc, char *argv[])
 {
-	int		size;
 	t_list	*list;
-	t_list	*list2;
+	int		i;
+	char	**arg_array;
+	void	**p;
 
 	if (argc < 2)
-		printf("Introduce arguments");
+		exit(0);
 	list = NULL;
-	size = build_lst(argv, &list);
-	printf("\ninitial list:\n");
-	print_lst(list);
-	list2 = ft_lstnew("80");
-	ft_lstadd_front(&list2, ft_lstnew("90"));
-	ft_lstadd_front(&list2, ft_lstnew("100"));
-	printf("\ninitial list2:\n");
-	print_lst(list2);
-	ss(&list, &list2);
-	printf("\nafter list:\n");
-	print_lst(list);
-	printf("\nafter list2:\n");
-	print_lst(list2);
+	i = 1;
+	while (i < argc)
+	{
+		arg_array = ft_split(argv[i], ' ');
+		build_lst(arg_array, &list);
+		p = (void**)arg_array;
+		free_2d_arr(p);
+		i++;
+	}
+	//build_lst(argv, &list);
+	//printf("\ninitial list:\n");
+	//print_lst(list);
+	sort_lst(&list);
+	//sa(&list);
+	//printf("\nafter ist:\n");
+	//print_lst(list);
 	free_list(list);
-	free_list(list2);
-	atexit(my_leaks);
+	//atexit(my_leaks);
 	return (0);
 }

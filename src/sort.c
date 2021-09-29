@@ -1,33 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   sort.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: asydykna <asydykna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/09/28 11:33:51 by asydykna          #+#    #+#             */
-/*   Updated: 2021/09/28 11:36:20 by asydykna         ###   ########.fr       */
+/*   Created: 2021/09/29 12:39:03 by asydykna          #+#    #+#             */
+/*   Updated: 2021/09/29 12:39:12 by asydykna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/push_swap.h"
 
 void
-	perrorexit(void)
+	sort_lst(t_list **lst)
 {
-	ft_putendl_fd("Error", 2);
-	exit (0);
-}
+	int		size;
+	t_list	*one;
+	t_list	*two;
 
-void
-	print_lst(t_list *lst)
-{
-	t_list	*tmp;
-
-	tmp = lst;
-	while (tmp && tmp->content)
+	one = *lst;
+	two = one->next;
+	size = ft_lstsize(*lst);
+	if (size == 2)
 	{
-		printf("%d\n", *(int *)tmp->content);
-		tmp = tmp->next;
+		if (*(int *)one->content > *(int *)two->content)
+			sa(lst);
 	}
 }

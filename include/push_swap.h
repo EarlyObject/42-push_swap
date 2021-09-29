@@ -14,6 +14,7 @@
 # define PUSH_SWAP_H
 
 # include <stdio.h>
+# include <string.h>
 # include "../libft/libft.h"
 
 void	swap_two(t_list **lst);
@@ -32,5 +33,7 @@ void	rrb(t_list **lst);
 void	rrr(t_list **a, t_list **b);
 void	pa(t_list **a, t_list **b);
 void	pb(t_list **a, t_list **b);
+void	sort_lst(t_list **lst);
+void	perrorexit(void);
 
 #endif 

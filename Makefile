@@ -6,7 +6,7 @@
 #    By: asydykna <asydykna@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/21 15:29:06 by asydykna          #+#    #+#              #
-#    Updated: 2021/09/28 15:27:40 by asydykna         ###   ########.fr        #
+#    Updated: 2021/09/29 12:51:51 by asydykna         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@ NAME = push_swap
 LIBFT_NAME = libft.a
 
 SRC = src/push_swap.c src/utils.c src/s_functions.c src/r_functions.c\
- src/rr_functions.c src/p_functions.c
+ src/rr_functions.c src/p_functions.c src/sort.c src/manage_stack.c
 
 OBJ = $(SRC:.c=.o)
 
