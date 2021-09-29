@@ -6,35 +6,26 @@
 /*   By: asydykna <asydykna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/07 12:03:11 by asydykna          #+#    #+#             */
-/*   Updated: 2021/09/29 10:46:17 by asydykna         ###   ########.fr       */
+/*   Updated: 2021/09/29 10:31:18 by asydykna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include "../include/push_swap.h"
 
 static int
-	calcrv(int sign, int count)
+	calcrv(long count)
 {
-	if (sign < 0 && count > 0)
-	{
-		if (count == 2147483647)
-			return (2147483647);
-		return (0);
-	}
-	if (sign > 0 && count < 0)
-	{
-		if (count == -2147483648)
-			return (-2147483648);
-		return (-1);
-	}
+	if (count > 2147483647 || count < -2147483648)
+		perrorexit();
 	return (count);
 }
 
 int
-	ft_atoi(const char *str)
+	ft_atoi_modf(const char *str)
 {
-	int	sign;
-	int	count;
+	int		sign;
+	long	count;
 
 	sign = 1;
 	count = 0;
@@ -49,12 +40,16 @@ int
 		str++;
 	}
 	if (!(*str >= '0' && *str <= '9'))
-		return (0);
+		perrorexit();
 	while (*str >= '0' && *str <= '9')
 	{
 		count *= 10;
 		count += (*str - 48) * sign;
 		str++;
 	}
-	return (calcrv(sign, count));
+	while (*str == ' ' || (*str >= 9 && *str <= 13) || *str == 127)
+		str++;
+	if (*str)
+		perrorexit();
+	return (calcrv(count));
 }
