@@ -52,13 +52,10 @@ void
 void
 	put_to_other_stack(t_list **a, t_list **b)
 {
-	t_list	*first_b;
 	t_list	*temp;
 
-	temp = NULL;
-	first_b = *b;
-	temp = first_b->next;
-	first_b->next = *a;
-	*a = first_b;
-	*b = temp;
+	temp = (*a)->next;
+	(*a)->next = *b;
+	*b = *a;
+	*a = temp;
 }

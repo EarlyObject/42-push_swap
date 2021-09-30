@@ -65,31 +65,34 @@ void
 int
 	main(int argc, char *argv[])
 {
-	t_list	*list;
+	t_list	*lst;
 	int		i;
 	char	**arg_array;
 	void	**p;
 
 	if (argc < 2)
 		exit(0);
-	list = NULL;
+	lst = NULL;
 	i = 1;
 	while (i < argc)
 	{
 		arg_array = ft_split(argv[i], ' ');
-		build_lst(arg_array, &list);
+		build_lst(arg_array, &lst);
 		p = (void**)arg_array;
 		free_2d_arr(p);
 		i++;
 	}
-	//build_lst(argv, &list);
-	//printf("\ninitial list:\n");
-	//print_lst(list);
-	sort_lst(&list);
-	//sa(&list);
+	if (!is_ordered(lst))
+		sort_lst(&lst);
+
+
+	//build_lst(argv, &lst);
+	//printf("\ninitial lst:\n");
+	//print_lst(lst);
+	//sa(&lst);
 	//printf("\nafter ist:\n");
-	//print_lst(list);
-	free_list(list);
+	//print_lst(lst);
+	free(lst);
 	//atexit(my_leaks);
 	return (0);
 }

@@ -35,5 +35,7 @@ void	pa(t_list **a, t_list **b);
 void	pb(t_list **a, t_list **b);
 void	sort_lst(t_list **lst);
 void	perrorexit(void);
+int		is_ordered(t_list *lst);
+int		cont_of(t_list *lst);
 
 #endif 
