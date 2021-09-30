@@ -40,6 +40,8 @@ void
 	one = *lst;
 	two = one->next;
 	three = two->next;
+	if (is_ordered(*lst))
+		return ;
 	if (cont_of(one) > cont_of(two) && cont_of(one) < cont_of(three))
 		sa(lst);
 	else if (cont_of(two) < cont_of(one) && cont_of(two) > cont_of(three))
@@ -58,46 +60,95 @@ void
 		rra(lst);
 }
 
-double
-	average(t_list **lst)
+int
+	is_sorted_and_top_bgst(t_list **lst)
 {
-	double	average;
-	int		sum;
-	t_list	*temp;
-
-	sum = 0;
-	temp = *lst;
-	while (temp)
+	if (is_ordered((*lst)->next) && cont_of(*lst) > cont_of(ft_lstlast(*lst)))
 	{
-		sum += cont_of(temp);
-		temp = temp->next;
+		ra(lst);
+		return (1);
 	}
-	average = sum / ft_lstsize(*lst);
-	return (average);
+	return (0);
+}
+
+void
+	iterate_lst(t_list **lst)
+{
+	if (cont_of(ft_lstlast(*lst)) < cont_of(*lst)
+		&& cont_of(ft_lstlast(*lst)) < cont_of((*lst)->next->next))
+		rra(lst);
+	else
+	{
+		ra(lst);
+		ra(lst);
+	}
+}
+
+void
+	insert_mid_num(t_list **lst, t_list *stack_b)
+{
+	if (cont_of(stack_b) < cont_of((*lst)->next))
+		ra(lst);
+	else
+		rra(lst);
 }
 
 void
 	sort_four(t_list **lst)
 {
 	t_list	*stack_b;
-	double	avrg;
 
 	stack_b = (t_list *)malloc(sizeof(t_list));
 	stack_b->next = NULL;
 	stack_b->content = NULL;
-	avrg = average(lst);
+	if (is_sorted_and_top_bgst(lst))
+	{
+		free_list(stack_b);
+		return ;
+	}
+	pb(lst, &stack_b);
+	sort_three(lst);
+	if (cont_of(stack_b) < cont_of(*lst) || cont_of(stack_b) > cont_of(ft_lstlast(*lst)))
+		pa(lst, &stack_b);
+	else
+	{
+		insert_mid_num(lst, stack_b);
+		pa(lst, &stack_b);
+	}
+	if (!is_sorted_and_top_bgst(lst))
+		while (!is_ordered(*lst))
+			iterate_lst(lst);
+	free_list(stack_b);
+}
+
+void
+	sort_five(t_list **lst)
+{
+	t_list	*stack_b;
+	//double	avrg;
+
+	stack_b = (t_list *)malloc(sizeof(t_list));
+	stack_b->next = NULL;
+	stack_b->content = NULL;
+//	avrg = average(lst);
 	while (!is_ordered(*lst))
 	{
-		if (cont_of(*lst) > avrg)
+		/*if (cont_of(*lst) > avrg)
 			ra(lst);
+		if (cont_of(*lst) > avrg)
+			ra(lst);*/
+		if (cont_of(*lst) > cont_of((*lst)->next))
+			sa(lst);
 		if (is_ordered(*lst))
 			return ;
 		pb(lst, &stack_b);
-		sort_three(lst);
+		sort_four(lst);
 		pa(lst, &stack_b);
 		if (!is_ordered(*lst))
 			sa(&*lst);
 	}
+	free_list(stack_b);
+	print_lst(*lst);
 }
 
 void
@@ -112,4 +163,6 @@ void
 		sort_three(lst);
 	else if (size == 4)
 		sort_four(lst);
+	else if (size == 5)
+		sort_five(lst);
 }

@@ -12,7 +12,7 @@
 
 #include "libft.h"
 
-t_list
+/*t_list
 	*ft_lstlast(t_list *lst)
 {
 	while (lst && lst->next != NULL)
@@ -20,4 +20,19 @@ t_list
 		lst = lst->next;
 	}
 	return (lst);
+}*/
+
+t_list
+	*ft_lstlast(t_list *lst)
+{
+	t_list	*temp;
+
+	/*if (!lst)
+		return (lst);*/
+	temp = lst;
+	while (temp && temp->next)
+	{
+		temp = temp->next;
+	}
+	return (temp);
 }

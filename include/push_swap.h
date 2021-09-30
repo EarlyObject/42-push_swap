@@ -15,6 +15,7 @@
 
 # include <stdio.h>
 # include <string.h>
+# include <limits.h>
 # include "../libft/libft.h"
 
 void	swap_two(t_list **lst);
@@ -37,5 +38,9 @@ void	sort_lst(t_list **lst);
 void	perrorexit(void);
 int		is_ordered(t_list *lst);
 int		cont_of(t_list *lst);
+double	average(t_list **lst);
+double	get_max(t_list **lst);
+double	get_min(t_list **lst);
+void	free_list(t_list *list);
 
 #endif 

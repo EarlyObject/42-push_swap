@@ -92,7 +92,7 @@ int
 	//sa(&lst);
 	//printf("\nafter ist:\n");
 	//print_lst(lst);
-	free(lst);
-	//atexit(my_leaks);
+	free_list(lst);
+	atexit(my_leaks);
 	return (0);
 }
