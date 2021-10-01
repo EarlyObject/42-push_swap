@@ -59,3 +59,11 @@ void
 	*b = *a;
 	*a = temp;
 }
+
+int
+	cont_of(t_list *lst)
+{
+	if (lst && lst->content)
+		return (*(int *)lst->content);
+	exit (-1);
+}

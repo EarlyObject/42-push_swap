@@ -16,7 +16,7 @@ LIBFT_NAME = libft.a
 
 SRC = src/push_swap.c src/utils.c src/s_functions.c src/r_functions.c\
  src/rr_functions.c src/p_functions.c src/sort.c src/manage_stack.c \
- src/checks.c
+ src/checks.c src/sort_utils.c
 
 OBJ = $(SRC:.c=.o)
 

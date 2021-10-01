@@ -82,7 +82,7 @@ int
 		free_2d_arr(p);
 		i++;
 	}
-	if (!is_ordered(lst))
+	if (!is_sorted(lst))
 		sort_lst(&lst);
 
 
@@ -93,6 +93,6 @@ int
 	//printf("\nafter ist:\n");
 	//print_lst(lst);
 	free_list(lst);
-	atexit(my_leaks);
+	//atexit(my_leaks);
 	return (0);
 }

@@ -12,12 +12,6 @@
 
 #include "../include/push_swap.h"
 
-int
-	cont_of(t_list *lst)
-{
-	return (*(int *)lst->content);
-}
-
 void
 	sort_two(t_list **lst)
 {
@@ -40,7 +34,7 @@ void
 	one = *lst;
 	two = one->next;
 	three = two->next;
-	if (is_ordered(*lst))
+	if (is_sorted(*lst))
 		return ;
 	if (cont_of(one) > cont_of(two) && cont_of(one) < cont_of(three))
 		sa(lst);
@@ -60,39 +54,6 @@ void
 		rra(lst);
 }
 
-int
-	is_sorted_and_top_bgst(t_list **lst)
-{
-	if (is_ordered((*lst)->next) && cont_of(*lst) > cont_of(ft_lstlast(*lst)))
-	{
-		ra(lst);
-		return (1);
-	}
-	return (0);
-}
-
-void
-	iterate_lst(t_list **lst)
-{
-	if (cont_of(ft_lstlast(*lst)) < cont_of(*lst)
-		&& cont_of(ft_lstlast(*lst)) < cont_of((*lst)->next->next))
-		rra(lst);
-	else
-	{
-		ra(lst);
-		ra(lst);
-	}
-}
-
-void
-	insert_mid_num(t_list **lst, t_list *stack_b)
-{
-	if (cont_of(stack_b) < cont_of((*lst)->next))
-		ra(lst);
-	else
-		rra(lst);
-}
-
 void
 	sort_four(t_list **lst)
 {
@@ -101,52 +62,41 @@ void
 	stack_b = (t_list *)malloc(sizeof(t_list));
 	stack_b->next = NULL;
 	stack_b->content = NULL;
-	if (is_sorted_and_top_bgst(lst))
+	if (top_bgst_then_sorted(lst))
 	{
 		free_list(stack_b);
 		return ;
 	}
 	pb(lst, &stack_b);
 	sort_three(lst);
-	if (cont_of(stack_b) < cont_of(*lst) || cont_of(stack_b) > cont_of(ft_lstlast(*lst)))
-		pa(lst, &stack_b);
-	else
-	{
-		insert_mid_num(lst, stack_b);
-		pa(lst, &stack_b);
-	}
-	if (!is_sorted_and_top_bgst(lst))
-		while (!is_ordered(*lst))
+	find_place_insert(lst, &stack_b);
+	if (!top_bgst_then_sorted(lst))
+		while (!is_sorted(*lst))
 			iterate_lst(lst);
 	free_list(stack_b);
+	print_lst(*lst);
 }
 
 void
 	sort_five(t_list **lst)
 {
 	t_list	*stack_b;
-	//double	avrg;
 
 	stack_b = (t_list *)malloc(sizeof(t_list));
 	stack_b->next = NULL;
 	stack_b->content = NULL;
-//	avrg = average(lst);
-	while (!is_ordered(*lst))
+	if (top_bgst_then_sorted(lst))
 	{
-		/*if (cont_of(*lst) > avrg)
-			ra(lst);
-		if (cont_of(*lst) > avrg)
-			ra(lst);*/
-		if (cont_of(*lst) > cont_of((*lst)->next))
-			sa(lst);
-		if (is_ordered(*lst))
-			return ;
-		pb(lst, &stack_b);
-		sort_four(lst);
-		pa(lst, &stack_b);
-		if (!is_ordered(*lst))
-			sa(&*lst);
+		free_list(stack_b);
+		return ;
 	}
+	pb(lst, &stack_b);
+	pb(lst, &stack_b);
+	sort_three(lst);
+	while (stack_b && stack_b->content)
+		find_place_insert(lst, &stack_b);
+	while (!is_sorted(*lst))
+		iterate_lst(lst);
 	free_list(stack_b);
 	print_lst(*lst);
 }

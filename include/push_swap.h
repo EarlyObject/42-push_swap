@@ -16,6 +16,7 @@
 # include <stdio.h>
 # include <string.h>
 # include <limits.h>
+# include <stdbool.h>
 # include "../libft/libft.h"
 
 void	swap_two(t_list **lst);
@@ -36,11 +37,18 @@ void	pa(t_list **a, t_list **b);
 void	pb(t_list **a, t_list **b);
 void	sort_lst(t_list **lst);
 void	perrorexit(void);
-int		is_ordered(t_list *lst);
+int		is_sorted(t_list *lst);
 int		cont_of(t_list *lst);
 double	average(t_list **lst);
 double	get_max(t_list **lst);
 double	get_min(t_list **lst);
 void	free_list(t_list *list);
+double	get_max(t_list **lst);
+int		top_bgst_then_sorted(t_list **lst);
+void	iterate_lst(t_list **lst);
+int		get_next_big_pos(int position, int position_max, t_list *temp,
+			t_list *stack_b);
+void	find_place_for_b(t_list **lst, t_list *stack_b);
+t_list	*find_place_insert(t_list **lst, t_list **stack_b);
 
 #endif 

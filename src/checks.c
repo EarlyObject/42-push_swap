@@ -13,7 +13,7 @@
 #include "../include/push_swap.h"
 
 int
-	is_ordered(t_list *lst)
+	is_sorted(t_list *lst)
 {
 	while (lst)
 	{
