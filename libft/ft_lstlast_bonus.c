@@ -27,8 +27,6 @@ t_list
 {
 	t_list	*temp;
 
-	/*if (!lst)
-		return (lst);*/
 	temp = lst;
 	while (temp && temp->next)
 	{
