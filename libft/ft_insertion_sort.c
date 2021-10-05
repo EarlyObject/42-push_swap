@@ -1,27 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   p_functions.c                                      :+:      :+:    :+:   */
+/*   ft_insertion_sort.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: asydykna <asydykna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/09/28 15:27:17 by asydykna          #+#    #+#             */
-/*   Updated: 2021/09/28 15:30:29 by asydykna         ###   ########.fr       */
+/*   Created: 2021/10/04 10:28:23 by asydykna          #+#    #+#             */
+/*   Updated: 2021/10/04 10:28:25 by asydykna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/push_swap.h"
+/* Function to sort an array using insertion sort*/
+
+#include "libft.h"
 
 void
-	pa(t_list **recipient, t_list **donor)
+	ft_insertion_sort(int arr[], int n)
 {
-	put_to_other_stack(donor, recipient);
-	printf("pa\n");
-}
+	int	i;
+	int	key;
+	int	j;
 
-void
-	pb(t_list **donor, t_list **recipient)
-{
-	put_to_other_stack(donor, recipient);
-	printf("pb\n");
+	i = 1;
+	while (i < n)
+	{
+		key = arr[i];
+		j = i - 1;
+		while (j >= 0 && arr[j] > key)
+		{
+			arr[j + 1] = arr[j];
+			j = j - 1;
+		}
+		arr[j + 1] = key;
+		i++;
+	}
 }

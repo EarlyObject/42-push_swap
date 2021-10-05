@@ -6,7 +6,7 @@
 /*   By: asydykna <asydykna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/29 12:51:37 by asydykna          #+#    #+#             */
-/*   Updated: 2021/09/29 12:52:04 by asydykna         ###   ########.fr       */
+/*   Updated: 2021/10/06 12:36:02 by asydykna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,28 +42,47 @@ void
 	bottom_to_top(t_list **lst)
 {
 	t_list	*last;
+	t_list	*penultimate;
 
 	last = ft_lstlast(*lst);
-	ft_lstpenultimate(*lst)->next = NULL;
+	penultimate = ft_lstpenultimate(*lst);
+	if (penultimate)
+		ft_lstpenultimate(*lst)->next = NULL;
 	last->next = *lst;
 	*lst = last;
+
+	/*last = ft_lstlast(*lst);
+	ft_lstpenultimate(*lst)->next = NULL;
+	last->next = *lst;
+	*lst = last;*/
 }
 
 void
-	put_to_other_stack(t_list **a, t_list **b)
+	put_to_other_stack(t_list **donor, t_list **recipient)
 {
-	t_list	*temp;
+	//t_list *pretmp;
+	t_list	*tmp;
 
-	temp = (*a)->next;
-	(*a)->next = *b;
-	*b = *a;
-	*a = temp;
+	//pretmp = *donor;
+	tmp = (*donor)->next;
+	if (*recipient && (*recipient)->content)
+	{
+		(*donor)->next = *recipient;
+	}
+	else
+	{
+		(*donor)->next = NULL;
+		free(*recipient);
+	}
+	*recipient = *donor;
+	*donor = tmp;
 }
+
 
 int
 	cont_of(t_list *lst)
 {
 	if (lst && lst->content)
 		return (*(int *)lst->content);
-	exit (-1);
+	exit (-1); //check to free memory
 }

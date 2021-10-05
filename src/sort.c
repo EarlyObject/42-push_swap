@@ -6,7 +6,7 @@
 /*   By: asydykna <asydykna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/29 12:39:03 by asydykna          #+#    #+#             */
-/*   Updated: 2021/09/29 12:39:12 by asydykna         ###   ########.fr       */
+/*   Updated: 2021/10/06 12:36:12 by asydykna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,10 +69,10 @@ void
 	}
 	pb(lst, &stack_b);
 	sort_three(lst);
-	find_place_insert(lst, &stack_b);
+	find_place_insert(lst, &stack_b, 0);
 	if (!top_bgst_then_sorted(lst))
 		while (!is_sorted(*lst))
-			iterate_lst(lst);
+			iterate_lst(lst, 'a');
 	free_list(stack_b);
 	print_lst(*lst);
 }
@@ -94,11 +94,13 @@ void
 	pb(lst, &stack_b);
 	sort_three(lst);
 	while (stack_b && stack_b->content)
-		find_place_insert(lst, &stack_b);
+	{
+		prepare_place(cont_of(stack_b), lst, 'b');
+		pa(lst, &stack_b);
+	}
 	while (!is_sorted(*lst))
-		iterate_lst(lst);
+		iterate_lst(lst, 'a');
 	free_list(stack_b);
-	print_lst(*lst);
 }
 
 void
@@ -115,4 +117,6 @@ void
 		sort_four(lst);
 	else if (size == 5)
 		sort_five(lst);
+	else if (size > 5 && size <= 100)
+		sort_hundred(lst);
 }

@@ -74,5 +74,6 @@ t_list			*ft_lstmap(t_list *lst, void *(*f)(void *),
 char			*ft_uitoa(unsigned int n);
 char			*ft_itoa_hex(unsigned long long num, char format);
 t_list			*ft_lstpenultimate(t_list *lst);
+void			ft_insertion_sort(int arr[], int n);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: asydykna <asydykna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/29 15:12:41 by asydykna          #+#    #+#             */
-/*   Updated: 2021/09/29 15:12:57 by asydykna         ###   ########.fr       */
+/*   Updated: 2021/10/06 12:35:31 by asydykna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,21 @@ int
 		if (lst->next)
 		{
 			if (cont_of(lst) > cont_of(lst->next))
+				return (0);
+		}
+		lst = lst->next;
+	}
+	return (1);
+}
+
+int
+	is_reverse_sorted(t_list *lst)
+{
+	while (lst)
+	{
+		if (lst->next)
+		{
+			if (cont_of(lst) < cont_of(lst->next))
 				return (0);
 		}
 		lst = lst->next;
@@ -53,7 +68,7 @@ double
 
 	temp = *lst;
 	max = INT_MIN;
-	while (temp)
+	while (temp && temp->content)
 	{
 		if (cont_of(temp) > max)
 			max = cont_of(temp);
@@ -77,4 +92,15 @@ double
 		temp = temp->next;
 	}
 	return (min);
+}
+
+void
+	duplicate_check(int num, t_list *lst)
+{
+	while (lst)
+	{
+		if (cont_of(lst) == num)
+			ft_error_exit("Duplicate number: ", num, 0);
+		lst = lst->next;
+	}
 }

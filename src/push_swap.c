@@ -19,7 +19,7 @@ void
 }
 
 void
-	build_lst(char *const *argv, t_list **list)
+	build_lst(char *const *argv, t_list **lst)
 {
 	int	i;
 	int	*pnum;
@@ -29,7 +29,8 @@ void
 	{
 		pnum = (int *)malloc(sizeof(int));
 		*pnum = ft_atoi_modf(argv[i]);
-		ft_lstadd_back(list, ft_lstnew(pnum));
+		duplicate_check(*pnum, *lst);
+		ft_lstadd_back(lst, ft_lstnew(pnum));
 		i++;
 	}
 }
