@@ -43,24 +43,6 @@ int
 }
 
 double
-	average(t_list **lst)
-{
-	double	average;
-	int		sum;
-	t_list	*temp;
-
-	sum = 0;
-	temp = *lst;
-	while (temp)
-	{
-		sum += cont_of(temp);
-		temp = temp->next;
-	}
-	average = sum / ft_lstsize(*lst);
-	return (average);
-}
-
-double
 	get_max(t_list **lst)
 {
 	double	max;

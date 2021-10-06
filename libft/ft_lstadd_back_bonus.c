@@ -19,6 +19,7 @@ void
 
 	if (lst)
 	{
+		new->next = NULL;
 		if (*lst)
 		{
 			last = ft_lstlast(*lst);

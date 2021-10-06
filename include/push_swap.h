@@ -40,7 +40,6 @@ void	perrorexit(void);
 int		is_sorted(t_list *lst);
 int		is_reverse_sorted(t_list *lst);
 int		cont_of(t_list *lst);
-double	average(t_list **lst);
 double	get_max(t_list **lst);
 double	get_min(t_list **lst);
 void	free_list(t_list *list);
@@ -51,8 +50,12 @@ int		calc_steps(int steps, t_list *recipient, int target);
 void	prepare_place(int donor_val, t_list **recipient, char donor_name);
 void	prepare_place_ascending(int donor_val, t_list **recipient, char donor_name); //needs refactoring
 void	find_place_insert(t_list **donor, t_list **recipient, char donor_name);
-void	sort_hundred(t_list **stack_a);
+void	sort_others(t_list **stack_a);
 void	ft_error_exit(char *err_message, int num, int exit_code);
 void	duplicate_check(int num, t_list *lst);
+int		get_chunks(int size);
+int		get_optimum(int size);
+int		*cp_lst_to_arr(t_list *const *lst, int size);
+t_list	*make_lst(void );
 
 #endif 

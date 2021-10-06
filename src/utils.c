@@ -45,3 +45,14 @@ void
 		i++;
 	}
 }
+
+t_list *
+	make_lst(void )
+{
+	t_list	*lst;
+
+	lst = (t_list *)malloc(sizeof(t_list));
+	lst->content = NULL;
+	lst->next = NULL;
+	return (lst);
+}

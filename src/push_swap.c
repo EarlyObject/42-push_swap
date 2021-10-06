@@ -79,20 +79,13 @@ int
 	{
 		arg_array = ft_split(argv[i], ' ');
 		build_lst(arg_array, &lst);
-		p = (void**)arg_array;
+		p = (void **)arg_array;
 		free_2d_arr(p);
 		i++;
 	}
 	if (!is_sorted(lst))
 		sort_lst(&lst);
-
-
-	//build_lst(argv, &lst);
-	//printf("\ninitial lst:\n");
-	//print_lst(lst);
-	//sa(&lst);
-	//printf("\nafter ist:\n");
-	//print_lst(lst);
+	print_lst(lst);
 	free_list(lst);
 	//atexit(my_leaks);
 	return (0);

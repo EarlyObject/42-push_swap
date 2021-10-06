@@ -116,8 +116,9 @@ void
 			return ;
 		else
 		{
+			//print_lst(*recipient);
 			while (!is_sorted(*recipient))
-				iterate_lst(recipient, recipient_name);
+				iterate_lst(recipient, recipient_name); //проверить целесообразность
 			return ;
 		}
 	}
@@ -150,7 +151,7 @@ void
 }
 
 void
-prepare_place_ascending(int donor_val, t_list **recipient, char donor_name)
+	prepare_place_ascending(int donor_val, t_list **recipient, char donor_name)
 {
 	int		steps;
 	bool	move_down;
@@ -168,8 +169,9 @@ prepare_place_ascending(int donor_val, t_list **recipient, char donor_name)
 			return ;
 		else
 		{
+			//print_lst(*recipient);
 			while (!is_sorted(*recipient))
-				iterate_lst(recipient, recipient_name);
+				iterate_lst(recipient, recipient_name); //проверить целесообразность
 			return ;
 		}
 	}

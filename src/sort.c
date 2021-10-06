@@ -68,13 +68,16 @@ void
 		return ;
 	}
 	pb(lst, &stack_b);
+	print_lst(*lst);
+	printf("***\n");
+	print_lst(stack_b);
 	sort_three(lst);
-	find_place_insert(lst, &stack_b, 0);
+	prepare_place(cont_of(stack_b), lst, 'b');
+	pa(lst, &stack_b);
 	if (!top_bgst_then_sorted(lst))
 		while (!is_sorted(*lst))
 			iterate_lst(lst, 'a');
 	free_list(stack_b);
-	print_lst(*lst);
 }
 
 void
@@ -117,6 +120,6 @@ void
 		sort_four(lst);
 	else if (size == 5)
 		sort_five(lst);
-	else if (size > 5 && size <= 100)
-		sort_hundred(lst);
+	else
+		sort_others(lst);
 }

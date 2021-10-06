@@ -47,23 +47,16 @@ void
 	last = ft_lstlast(*lst);
 	penultimate = ft_lstpenultimate(*lst);
 	if (penultimate)
-		ft_lstpenultimate(*lst)->next = NULL;
+		penultimate->next = NULL;
 	last->next = *lst;
 	*lst = last;
-
-	/*last = ft_lstlast(*lst);
-	ft_lstpenultimate(*lst)->next = NULL;
-	last->next = *lst;
-	*lst = last;*/
 }
 
 void
 	put_to_other_stack(t_list **donor, t_list **recipient)
 {
-	//t_list *pretmp;
 	t_list	*tmp;
 
-	//pretmp = *donor;
 	tmp = (*donor)->next;
 	if (*recipient && (*recipient)->content)
 	{
@@ -78,11 +71,14 @@ void
 	*donor = tmp;
 }
 
-
 int
 	cont_of(t_list *lst)
 {
 	if (lst && lst->content)
 		return (*(int *)lst->content);
-	exit (-1); //check to free memory
+	else
+	{
+		ft_putendl_fd("Error", 2);
+		exit(-1);
+	}
 }
