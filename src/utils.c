@@ -13,13 +13,6 @@
 #include "../include/push_swap.h"
 
 void
-	perrorexit(void)
-{
-	ft_putendl_fd("Error", 2);
-	exit (0);
-}
-
-void
 	ft_error_exit(char *err_message, int num, int exit_code)
 {
 	ft_putendl_fd("Error", 2);
@@ -28,22 +21,6 @@ void
 		ft_putnbr_fd(num, 2);
 	ft_putendl_fd("", 2);
 	exit(exit_code);
-}
-
-void
-	print_lst(t_list *lst)
-{
-	t_list	*tmp;
-	int		i;
-
-	tmp = lst;
-	i = 0;
-	while (tmp && tmp->content)
-	{
-		printf("%d  %d\n", i, *(int *)tmp->content);
-		tmp = tmp->next;
-		i++;
-	}
 }
 
 t_list *
@@ -55,4 +32,52 @@ t_list *
 	lst->content = NULL;
 	lst->next = NULL;
 	return (lst);
+}
+
+int
+	get_chunks(int size)
+{
+	int	chunks;
+	int	optimum;
+
+	optimum = get_optimum(size);
+	chunks = size / optimum;
+	if (chunks < 1)
+		chunks = 1;
+	else if (size % optimum != 0)
+		chunks += 1;
+	return (chunks);
+}
+
+int
+	get_optimum(int size)
+{
+	int	optimum;
+
+	if (size < 20)
+		optimum = 10;
+	else if (size >= 20 && size <= 100)
+		optimum = 20;
+	else
+		optimum = 40;
+	return (optimum);
+}
+
+int *
+	cp_lst_to_arr(t_list *const *lst, int size)
+{
+	int		*arr;
+	t_list	*temp;
+	int		i;
+
+	arr = (int *) malloc(size * sizeof(int));
+	temp = *lst;
+	i = 0;
+	while (temp)
+	{
+		arr[i] = cont_of(temp);
+		i++;
+		temp = temp->next;
+	}
+	return (arr);
 }

@@ -40,6 +40,15 @@ void
 	}
 }
 
+int
+	get_correct_val(int val)
+{
+	if (val == -2147483648 || val == 2147483647)
+		return (val);
+	else
+		return (val - 1);
+}
+
 void
 	sort_and_push_chunks(t_list **stack_a, t_list **stack_b, const int *arr,
 						 int idxs[])
@@ -59,24 +68,11 @@ void
 		ups_and_lows[0] = -1;
 		calc_ups_lows(arr, tmp, idxs, ups_and_lows);
 		if (ups_and_lows[0] < ft_lstsize(*stack_a) - ups_and_lows[2]) //add for if donor_val is int_max
-			prepare_place(ups_and_lows[1] - 1, stack_a, 'b');
+			prepare_place(get_correct_val(ups_and_lows[1]), stack_a, 'b', 0);
 		else
-			prepare_place(ups_and_lows[3] - 1, stack_a, 'b');
-		//sort stack b for putting from stack a
-	/*	printf("stack a :\n");
-		print_lst(*stack_a);
-		printf("***\n");*/
-			//prepare_place(cont_of(*stack_a), stack_b, 'a'); //error, same line
-			prepare_place_ascending(cont_of(*stack_a), stack_b, 'a'); //error, same line
-		/*printf("stack b :\n");
-		print_lst(*stack_b);
-		printf("***\n");*/
+			prepare_place(get_correct_val(ups_and_lows[3]), stack_a, 'b', 0);
+		prepare_place(cont_of(*stack_a), stack_b, 'a', true);
 		pb(stack_a, stack_b);
-		/*while (!is_sorted((*stack_b)))
-			iterate_lst(stack_b, 'b');*/
-	/*	printf("stack b after iterating :\n");
-		print_lst(*stack_b);
-		printf("***\n");*/
 		count++;
 	}
 }
@@ -120,17 +116,11 @@ void
 	fill_and_sort_stackb(stack_a, &stack_b, size, arr);
 	while (stack_b)
 	{
-		prepare_place_ascending(cont_of(stack_b), stack_a, 'b');
+		prepare_place(cont_of(stack_b), stack_a, 'b', true);
 		pa(stack_a, &stack_b);
 	}
 	while (!is_sorted(*stack_a))
 		iterate_lst(stack_a, 'a');
-	/*printf("stack a :\n");
-	print_lst(*stack_a);
-	printf("***\n");
-	printf("stack b :\n");
-	print_lst(stack_b);
-	printf("***\n");*/
 	free(arr);
 	free_list(stack_b);
 }

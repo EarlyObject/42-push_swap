@@ -68,147 +68,36 @@ void
 }
 
 int
-	calc_steps(int steps, t_list *recipient, int target)
+	find_max_then_stop(int tmp, int start, t_list **lst)
 {
 	int	max;
-	int	idx_max;
-	int	next_biggest;
-	int	i;
 
-	max = (int)get_max(&recipient);
-	idx_max = -1;
-	next_biggest = max;
-	i = -1;
-	while (recipient)
+	max = cont_of(*lst);
+	*lst = (*lst)->next;
+	while ((*lst))
 	{
-		i++;
-		if (cont_of(recipient) == max)
-			idx_max = i;
-		if (cont_of(recipient) > target && cont_of(recipient) < next_biggest)
+		tmp = cont_of((*lst));
+		if (tmp < max || tmp > start)
 		{
-			next_biggest = cont_of(recipient);
-			steps = i;
+			return (max);
 		}
-		recipient = recipient->next;
+		max = tmp;
+		(*lst) = (*lst)->next;
 	}
-	if (target == max || steps < 0)
-		steps = idx_max;
-	return (steps);
+	return (tmp);
 }
 
-void
-	prepare_place(int donor_val, t_list **recipient, char donor_name)
+bool
+	is_ordered_not_sorted(t_list *lst)
 {
-	int		steps;
-	bool	move_down;
-	char	recipient_name;
+	int	head;
+	int	tmp;
 
-	if (!*recipient)
-		return ;
-	if (donor_name == 'a')
-		recipient_name = 'b';
-	else
-		recipient_name = 'a';
-	if (donor_val > get_max(recipient))
-	{
-		if (is_sorted(*recipient)
-			|| is_reverse_sorted(*recipient))
-			return ;
-		else
-		{
-			//print_lst(*recipient);
-			while (!is_sorted(*recipient))
-				iterate_lst(recipient, recipient_name); //проверить целесообразность
-			return ;
-		}
-	}
-	steps = -1;
-	move_down = true;
-	steps = calc_steps(steps, *recipient, donor_val);
-	if (ft_lstsize(*recipient) - steps < steps)
-	{
-		move_down = false;
-		steps = ft_lstsize(*recipient) - steps;
-	}
-	while (steps)
-	{
-		if (donor_name == 'b')
-		{
-			if (move_down)
-				ra(recipient);
-			else
-				rra(recipient);
-		}
-		else
-		{
-			if (move_down)
-				rb(recipient);
-			else
-				rrb(recipient);
-		}
-		steps--;
-	}
-}
-
-void
-	prepare_place_ascending(int donor_val, t_list **recipient, char donor_name)
-{
-	int		steps;
-	bool	move_down;
-	char	recipient_name;
-
-	if (!*recipient)
-		return ;
-	if (donor_name == 'a')
-		recipient_name = 'b';
-	else
-		recipient_name = 'a';
-	if (donor_val > get_max(recipient))
-	{
-		if (is_sorted(*recipient))
-			return ;
-		else
-		{
-			//print_lst(*recipient);
-			while (!is_sorted(*recipient))
-				iterate_lst(recipient, recipient_name); //проверить целесообразность
-			return ;
-		}
-	}
-	steps = -1;
-	move_down = true;
-	steps = calc_steps(steps, *recipient, donor_val);
-	if (ft_lstsize(*recipient) - steps < steps)
-	{
-		move_down = false;
-		steps = ft_lstsize(*recipient) - steps;
-	}
-	while (steps)
-	{
-		if (donor_name == 'b')
-		{
-			if (move_down)
-				ra(recipient);
-			else
-				rra(recipient);
-		}
-		else
-		{
-			if (move_down)
-				rb(recipient);
-			else
-				rrb(recipient);
-		}
-		steps--;
-	}
-}
-
-void
-	find_place_insert(t_list **donor, t_list **recipient, char donor_name)
-{
-	prepare_place(cont_of(*donor), recipient, donor_name);
-	if (donor_name == 'a')
-		pa(recipient, donor);
-	else
-		pb(donor, recipient);
+	tmp = 0;
+	head = cont_of(lst);
+	find_max_then_stop(tmp, INT_MAX - 1, &lst);
+	find_max_then_stop(tmp, head, &lst);
+	if (lst)
+		return (false);
+	return (true);
 }

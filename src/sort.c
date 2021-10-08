@@ -55,32 +55,6 @@ void
 }
 
 void
-	sort_four(t_list **lst)
-{
-	t_list	*stack_b;
-
-	stack_b = (t_list *)malloc(sizeof(t_list));
-	stack_b->next = NULL;
-	stack_b->content = NULL;
-	if (top_bgst_then_sorted(lst))
-	{
-		free_list(stack_b);
-		return ;
-	}
-	pb(lst, &stack_b);
-	print_lst(*lst);
-	printf("***\n");
-	print_lst(stack_b);
-	sort_three(lst);
-	prepare_place(cont_of(stack_b), lst, 'b');
-	pa(lst, &stack_b);
-	if (!top_bgst_then_sorted(lst))
-		while (!is_sorted(*lst))
-			iterate_lst(lst, 'a');
-	free_list(stack_b);
-}
-
-void
 	sort_five(t_list **lst)
 {
 	t_list	*stack_b;
@@ -93,13 +67,16 @@ void
 		free_list(stack_b);
 		return ;
 	}
-	pb(lst, &stack_b);
-	pb(lst, &stack_b);
-	sort_three(lst);
-	while (stack_b && stack_b->content)
+	if (!is_ordered_not_sorted(*lst))
 	{
-		prepare_place(cont_of(stack_b), lst, 'b');
-		pa(lst, &stack_b);
+		while (ft_lstsize(*lst) > 3)
+			pb(lst, &stack_b);
+		sort_three(lst);
+		while (stack_b && stack_b->content)
+		{
+			prepare_place(cont_of(stack_b), lst, 'b', 0);
+			pa(lst, &stack_b);
+		}
 	}
 	while (!is_sorted(*lst))
 		iterate_lst(lst, 'a');
@@ -116,9 +93,7 @@ void
 		sort_two(lst);
 	else if (size == 3)
 		sort_three(lst);
-	else if (size == 4)
-		sort_four(lst);
-	else if (size == 5)
+	else if (size == 4 || size == 5)
 		sort_five(lst);
 	else
 		sort_others(lst);

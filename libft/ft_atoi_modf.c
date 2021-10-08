@@ -11,7 +11,13 @@
 /* ************************************************************************** */
 
 #include "libft.h"
-#include "../include/push_swap.h"
+
+void
+	perrorexit(void)
+{
+	ft_putendl_fd("Error", 2);
+	exit (0);
+}
 
 static int
 	calcrv(long count)

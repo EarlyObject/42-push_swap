@@ -85,7 +85,7 @@ int
 	}
 	if (!is_sorted(lst))
 		sort_lst(&lst);
-	print_lst(lst);
+	//print_lst(lst);
 	free_list(lst);
 	//atexit(my_leaks);
 	return (0);

@@ -36,7 +36,6 @@ void	rrr(t_list **a, t_list **b);
 void	pa(t_list **recipient, t_list **donor);
 void	pb(t_list **donor, t_list **recipient);
 void	sort_lst(t_list **lst);
-void	perrorexit(void);
 int		is_sorted(t_list *lst);
 int		is_reverse_sorted(t_list *lst);
 int		cont_of(t_list *lst);
@@ -47,15 +46,16 @@ double	get_max(t_list **lst);
 int		top_bgst_then_sorted(t_list **lst);
 void	iterate_lst(t_list **lst, char stack_name);
 int		calc_steps(int steps, t_list *recipient, int target);
-void	prepare_place(int donor_val, t_list **recipient, char donor_name);
+void
+prepare_place(int donor_val, t_list **recipient, char donor_name, bool sort_rcpt_ascending);
 void	prepare_place_ascending(int donor_val, t_list **recipient, char donor_name); //needs refactoring
-void	find_place_insert(t_list **donor, t_list **recipient, char donor_name);
 void	sort_others(t_list **stack_a);
 void	ft_error_exit(char *err_message, int num, int exit_code);
 void	duplicate_check(int num, t_list *lst);
 int		get_chunks(int size);
 int		get_optimum(int size);
 int		*cp_lst_to_arr(t_list *const *lst, int size);
+bool	is_ordered_not_sorted(t_list *lst);
 t_list	*make_lst(void );
 
 #endif 
