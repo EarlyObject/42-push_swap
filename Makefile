@@ -52,7 +52,7 @@ fclean: clean
 re: fclean all
 
 norm:
-	norminette ./src $(LIBFT_PATH)
+	norminette ./src ./include $(LIBFT_PATH)
 
 .SILENT: $(OBJ)
 
