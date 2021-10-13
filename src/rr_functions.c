@@ -16,14 +16,14 @@ void
 	rra(t_list **lst)
 {
 	bottom_to_top(lst);
-	printf("rra\n");
+	ft_putendl_fd("rra", 1);
 }
 
 void
 	rrb(t_list **lst)
 {
 	bottom_to_top(lst);
-	printf("rrb\n");
+	ft_putendl_fd("rrb", 1);
 }
 
 void
@@ -31,5 +31,5 @@ void
 {
 	bottom_to_top(a);
 	bottom_to_top(b);
-	printf("rrr\n");
+	ft_putendl_fd("rrr", 1);
 }

@@ -15,7 +15,6 @@
 
 # include <stdlib.h>
 # include <unistd.h>
-# include <stdio.h>
 
 typedef struct s_list
 {
@@ -75,5 +74,6 @@ char			*ft_uitoa(unsigned int n);
 char			*ft_itoa_hex(unsigned long long num, char format);
 t_list			*ft_lstpenultimate(t_list *lst);
 void			ft_insertion_sort(int arr[], int n);
+void			perror_exit(void);
 
 #endif

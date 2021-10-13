@@ -14,9 +14,9 @@ NAME = push_swap
 
 LIBFT_NAME = libft.a
 
-SRC = src/push_swap.c src/utils.c src/s_functions.c src/r_functions.c\
- src/rr_functions.c src/p_functions.c src/sort.c src/manage_stack.c \
- src/checks.c src/sort_utils.c src/sort_large_nums.c src/prepare_place.c
+SRC = push_swap.c utils.c s_functions.c r_functions.c rr_functions.c \
+	p_functions.c sort.c manage_stack.c checks.c sort_utils.c \
+	sort_large_nums.c prepare_place.c
 
 OBJ = $(SRC:.c=.o)
 
@@ -28,19 +28,17 @@ RM = rm -f
 
 LIBFT_PATH = ./libft
 
-vpath %.c src
+VPATH = src include
+#vpath %.c src
 
-vpath %.h include
+#vpath %.h include
 
 all: $(NAME)
 
 $(NAME): $(OBJ)
 	$(MAKE) -C $(LIBFT_PATH)
-	$(CC) -g3 $(CFLAGS) $(SRC) $(LIBFT_PATH)/$(LIBFT_NAME) -o $(NAME) #check OBJ instead of SRC
-
-#	cp $(LIBFT_PATH)/libft.a $(NAME)
-# $(CC) $(CFLAGS) $(OBJ) -o $(NAME)
-#ar rcs $(NAME) ./$(OBJ)
+	cp $(LIBFT_PATH)/libft.a $(LIBFT_NAME)
+	$(CC) $(CFLAGS) $(OBJ) $(LIBFT_PATH)/$(LIBFT_NAME) -o $(NAME) #check OBJ instead of SRC
 
 clean:
 	$(RM) $(OBJ)
@@ -49,12 +47,13 @@ clean:
 fclean: clean
 	make fclean -C $(LIBFT_PATH)
 	$(RM) $(NAME)
+	$(RM) $(LIBFT_NAME)
 
 re: fclean all
 
 norm:
-	norminette
+	norminette ./src $(LIBFT_PATH)
 
-#.SILENT: $(OBJ)
+.SILENT: $(OBJ)
 
 .PHONY: all clean fclean re norm

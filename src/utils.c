@@ -12,17 +12,6 @@
 
 #include "../include/push_swap.h"
 
-void
-	ft_error_exit(char *err_message, int num, int exit_code)
-{
-	ft_putendl_fd("Error", 2);
-	ft_putstr_fd(err_message, 2);
-	if (num)
-		ft_putnbr_fd(num, 2);
-	ft_putendl_fd("", 2);
-	exit(exit_code);
-}
-
 t_list *
 	make_lst(void )
 {

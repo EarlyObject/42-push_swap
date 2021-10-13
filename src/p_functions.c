@@ -16,12 +16,12 @@ void
 	pa(t_list **recipient, t_list **donor)
 {
 	put_to_other_stack(donor, recipient);
-	printf("pa\n");
+	ft_putendl_fd("pa", 1);
 }
 
 void
 	pb(t_list **donor, t_list **recipient)
 {
 	put_to_other_stack(donor, recipient);
-	printf("pb\n");
+	ft_putendl_fd("pb", 1);
 }

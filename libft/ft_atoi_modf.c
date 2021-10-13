@@ -13,18 +13,31 @@
 #include "libft.h"
 
 void
-	perrorexit(void)
+	perror_exit(void)
 {
 	ft_putendl_fd("Error", 2);
 	exit (0);
 }
 
 static int
-	calcrv(long count)
+	calc_rv(long count)
 {
 	if (count > 2147483647 || count < -2147483648)
-		perrorexit();
+		perror_exit();
 	return (count);
+}
+
+void
+	run_math_signs(const char **str, int *sign)
+{
+	if (*(*str) == '-' || *(*str) == '+')
+	{
+		if (*(*str) == '-')
+			(*sign) = -1;
+		else
+			(*sign) = 1;
+		(*str)++;
+	}
 }
 
 int
@@ -37,16 +50,9 @@ int
 	count = 0;
 	while (*str == ' ' || (*str >= 9 && *str <= 13) || *str == 127)
 		str++;
-	if (*str == '-' || *str == '+')
-	{
-		if (*str == '-')
-			sign = -1;
-		else
-			sign = 1;
-		str++;
-	}
+	run_math_signs(&str, &sign);
 	if (!(*str >= '0' && *str <= '9'))
-		perrorexit();
+		perror_exit();
 	while (*str >= '0' && *str <= '9')
 	{
 		count *= 10;
@@ -56,6 +62,6 @@ int
 	while (*str == ' ' || (*str >= 9 && *str <= 13) || *str == 127)
 		str++;
 	if (*str)
-		perrorexit();
-	return (calcrv(count));
+		perror_exit();
+	return (calc_rv(count));
 }

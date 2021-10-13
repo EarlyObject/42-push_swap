@@ -16,14 +16,14 @@ void
 	sa(t_list **lst)
 {
 	swap_two(lst);
-	printf("sa\n");
+	ft_putendl_fd("sa", 1);
 }
 
 void
 	sb(t_list **lst)
 {
 	swap_two(lst);
-	printf("sb\n");
+	ft_putendl_fd("sb", 1);
 }
 
 void
@@ -31,5 +31,5 @@ void
 {
 	swap_two(a);
 	swap_two(b);
-	printf("ss\n");
+	ft_putendl_fd("ss", 1);
 }

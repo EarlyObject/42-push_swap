@@ -67,7 +67,7 @@ void
 		tmp = *stack_a;
 		ups_and_lows[0] = -1;
 		calc_ups_lows(arr, tmp, idxs, ups_and_lows);
-		if (ups_and_lows[0] < ft_lstsize(*stack_a) - ups_and_lows[2]) //add for if donor_val is int_max
+		if (ups_and_lows[0] < ft_lstsize(*stack_a) - ups_and_lows[2])
 			prepare_place(get_correct_val(ups_and_lows[1]), stack_a, 'b', 0);
 		else
 			prepare_place(get_correct_val(ups_and_lows[3]), stack_a, 'b', 0);

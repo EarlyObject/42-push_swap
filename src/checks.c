@@ -82,7 +82,7 @@ void
 	while (lst)
 	{
 		if (cont_of(lst) == num)
-			ft_error_exit("Duplicate number: ", num, 0);
+			perror_exit();
 		lst = lst->next;
 	}
 }
