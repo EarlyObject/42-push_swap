@@ -29,16 +29,13 @@ RM = rm -f
 LIBFT_PATH = ./libft
 
 VPATH = src include
-#vpath %.c src
-
-#vpath %.h include
 
 all: $(NAME)
 
 $(NAME): $(OBJ)
 	$(MAKE) -C $(LIBFT_PATH)
 	cp $(LIBFT_PATH)/libft.a $(LIBFT_NAME)
-	$(CC) $(CFLAGS) $(OBJ) $(LIBFT_PATH)/$(LIBFT_NAME) -o $(NAME) #check OBJ instead of SRC
+	$(CC)  -g3 $(CFLAGS) $(OBJ) $(LIBFT_PATH)/$(LIBFT_NAME) -o $(NAME)
 
 clean:
 	$(RM) $(OBJ)

@@ -67,37 +67,32 @@ void
 	}
 }
 
-int
-	find_max_then_stop(int tmp, int start, t_list **lst)
-{
-	int	max;
-
-	max = cont_of(*lst);
-	*lst = (*lst)->next;
-	while ((*lst))
-	{
-		tmp = cont_of((*lst));
-		if (tmp < max || tmp > start)
-		{
-			return (max);
-		}
-		max = tmp;
-		(*lst) = (*lst)->next;
-	}
-	return (tmp);
-}
-
 bool
 	is_ordered_not_sorted(t_list *lst)
 {
-	int	head;
-	int	tmp;
+	t_list	*start;
+	t_list	*end;
+	t_list	*temp_start;
+	bool	sorted;
+	int		min;
 
-	tmp = 0;
-	head = cont_of(lst);
-	find_max_then_stop(tmp, INT_MAX - 1, &lst);
-	find_max_then_stop(tmp, head, &lst);
-	if (lst)
-		return (false);
-	return (true);
+	min = (int)get_min(&lst);
+	start = lst;
+	end = ft_lstlast(lst);
+	end->next = lst;
+	while (true)
+	{
+		if (cont_of(lst->next) == min)
+		{
+			temp_start = lst->next;
+			lst->next = NULL;
+			sorted = is_sorted(temp_start);
+			break ;
+		}
+		lst = lst->next;
+	}
+	ft_lstlast(temp_start)->next = temp_start;
+	lst = start;
+	end->next = NULL;
+	return (sorted);
 }

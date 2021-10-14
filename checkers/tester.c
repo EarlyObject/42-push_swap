@@ -149,7 +149,7 @@ void heapPermutation(int a[], int size, int n)
 int
 	main(void)
 {
-	int a[] = { -2147483648, 44, 67, -35, -13, -53, -56, 2147483647 };
+	int a[] = { 45 };
 	int n = sizeof a / sizeof a[0];
 
 	heapPermutation(a, n, n);

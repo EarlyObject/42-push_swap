@@ -55,6 +55,32 @@ void
 }
 
 void
+	sort_four(t_list **lst)
+{
+	t_list	*stack_b;
+
+	stack_b = (t_list *)malloc(sizeof(t_list));
+	stack_b->next = NULL;
+	stack_b->content = NULL;
+	if (top_bgst_then_sorted(lst))
+	{
+		free_list(stack_b);
+		return ;
+	}
+	if (!is_ordered_not_sorted(*lst))
+	{
+		pb(lst, &stack_b);
+		sort_three(lst);
+		prepare_place(cont_of(stack_b), lst, 'b', true);
+		pa(lst, &stack_b);
+	}
+	if (!top_bgst_then_sorted(lst))
+		while (!is_sorted(*lst))
+			iterate_lst(lst, 'a');
+	free_list(stack_b);
+}
+
+void
 	sort_five(t_list **lst)
 {
 	t_list	*stack_b;
